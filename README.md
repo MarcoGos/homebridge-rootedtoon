@@ -1,7 +1,7 @@
-# homebridge-rootedtoon
+# homebridge-rootedtoonmg
 This plugin enables homebridge to communicate with a Rooted Toon. The shown current temperature is displayed with a 0.5 degree precision. The target temperature can be set with a 0.5 degree precision.
 
-`npm install -g --unsafe-perm homebridge-rootedtoon`
+`npm install -g --unsafe-perm homebridge-rootedtoonmg`
 
 ## Configuration
 The following should be added to the homebridge config.json:
