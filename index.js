@@ -126,7 +126,7 @@ class RootedToon{
 			if (!err && response.statusCode == 200) {
 				this.log("response success");
 				var json = JSON.parse(body);
-				var output = (parseFloat(json.currentTemp) / 100).toFixed(0);
+				var output = Math.floor(parseFloat(json.currentTemp) / 50) / 2;
 				this.currentTemperature = output;
 				this.log("Current temperature is %s", this.currentTemperature);
 				callback(null, this.currentTemperature); // success
@@ -145,7 +145,7 @@ class RootedToon{
 			if (!err && response.statusCode == 200) {
 				this.log("response success");
 				var json = JSON.parse(body);
-				var output = (parseFloat(json.currentSetpoint) / 100).toFixed(0);
+				var output = (parseFloat(json.currentSetpoint) / 50).toFixed(0) / 2;
 				this.targetTemperature = output;
 				this.log("Target temperature is %s", this.targetTemperature);
 				callback(null, this.targetTemperature); // success
@@ -157,9 +157,10 @@ class RootedToon{
 	}
 
 	setTargetTemperature(value, callback) {
-		this.log("setTargetTemperature from:", this.apiroute+"/happ_thermstat?action=setSetpoint&Setpoint="+value+"00");
+		value = (value * 2).toFixed(0) * 50;
+		this.log("setTargetTemperature from:", this.apiroute+"/happ_thermstat?action=setSetpoint&Setpoint="+value);
 		request.get({
-			url: this.apiroute+"/happ_thermstat?action=setSetpoint&Setpoint="+value+"00"
+			url: this.apiroute+"/happ_thermstat?action=setSetpoint&Setpoint="+value
 		}, function(err, response, body) {
 			if (!err && response.statusCode == 200) {
 				this.log("response success");
