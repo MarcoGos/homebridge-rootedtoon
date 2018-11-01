@@ -126,7 +126,7 @@ class RootedToon{
 			if (!err && response.statusCode == 200) {
 				this.log("response success");
 				var json = JSON.parse(body);
-				var output = Math.floor(parseFloat(json.currentTemp) / 50) / 2;
+				var output = (parseFloat(json.currentTemp) / 50).toFixed(0) / 2;
 				this.currentTemperature = output;
 				this.log("Current temperature is %s", this.currentTemperature);
 				callback(null, this.currentTemperature); // success
